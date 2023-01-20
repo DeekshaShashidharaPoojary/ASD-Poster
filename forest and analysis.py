@@ -285,6 +285,26 @@ plt.ylabel("India")
 plt.legend()
 plt.show()
 
+print(data1)
+
+print(data1['continent'].unique())
+
+
+def cont(x):
+  data_a=data1[data1['continent']==x]
+  fig=px.bar(y=data_a['Country Name'],x=data_a['average'],width=1000,height=1200)
+  fig.update_layout(title_text=x, title_x=0.5)
+  fig.show()
+  plt.savefig('BarChart.jpg')
+
+continents=['Asia','Europe','Africa','Americas','Oceania']
+for i in continents:
+  cont(i)
+  
+data_mostly=data1[data1['average']>50]
+print(data_mostly)
+
+px.bar(y=data_mostly['average'],x=data_mostly['Country Name'],height=800,width=1000)
 
 
   
