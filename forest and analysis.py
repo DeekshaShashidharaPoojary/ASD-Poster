@@ -106,6 +106,7 @@ for ic in range(nclusters):
 
 plt.xlabel("Countries")
 plt.ylabel("Average")
+plt.savefig("cluster_plot.png")
 plt.show()
 
 #for understanding of encoded data of country
@@ -152,6 +153,7 @@ df_uk['UK']=data_t['United Kingdom']
 #plotting the columns
 plt.figure(figsize=(20,20))
 df_uk.plot("year","UK")
+plt.savefig("UK_plot.png")
 plt.show()
 
 def exponential(t, n0, g):
@@ -167,6 +169,7 @@ param, covar = opt.curve_fit(exponential, df_uk["year"], df_uk["UK"],p0=(7323396
 
 df_uk["fit"] = exponential(df_uk["year"], *param)
 df_uk.plot("year", ["UK", "fit"])
+plt.savefig("UK_fit_plot.png")
 plt.show()
 
 #creating dataframe for UK
@@ -177,6 +180,7 @@ df_usa['Usa']=data_t['United States']
 #plotting the columns
 plt.figure(figsize=(20,20))
 df_usa.plot("year","Usa")
+plt.savefig("USA_plot.png")
 plt.show()
 
 print(type(df_usa["year"].iloc[1]))
@@ -186,6 +190,7 @@ param, covar = opt.curve_fit(exponential, df_usa["year"], df_usa["Usa"],p0=(7323
 
 df_usa["fit"] = exponential(df_usa["year"], *param)
 df_usa.plot("year", ["Usa", "fit"])
+plt.savefig("USA_fit_plot.png")
 plt.show()
 
 #creating dataframe for UK
@@ -196,6 +201,7 @@ df_ind['india']=data_t['India']
 #plotting the columns
 plt.figure(figsize=(20,20))
 df_ind.plot("year","india")
+plt.savefig("India_plot.png")
 plt.show()
 
 #print(type(df_usa["year"].iloc[1]))
@@ -206,6 +212,7 @@ param, covar = opt.curve_fit(exponential, df_ind["year"], df_ind["india"],p0=(73
 
 df_ind["fit"] = exponential(df_ind["year"], *param)
 df_ind.plot("year", ["india", "fit"])
+plt.savefig("India_fit_plot.png")
 plt.show()
 
 def logistic(t, n0, g, t0):
@@ -221,6 +228,7 @@ print("parameters:", param)
 print("std. dev.", sigma)
 df_uk["fit"] = logistic(df_uk["year"], *param)
 df_uk.plot("year", ["UK", "fit"])
+plt.savefig("UK_logistic_plot.png")
 plt.show()
 
 
@@ -235,6 +243,7 @@ plt.plot(year, forecast, label="forecast")
 plt.xlabel("year")
 plt.ylabel("UK")
 plt.legend()
+plt.savefig("UK_forecast_plot.png")
 plt.show()
 
 param, covar = opt.curve_fit(logistic, df_usa["year"], df_usa["Usa"],p0=(3e12, 0.03, 2000.0))
@@ -245,6 +254,7 @@ print("parameters:", param)
 print("std. dev.", sigma)
 df_usa["fit"] = logistic(df_usa["year"], *param)
 df_usa.plot("year", ["Usa", "fit"])
+plt.savefig("USA_logistic_plot.png")
 plt.show()
 
 
@@ -259,6 +269,7 @@ plt.plot(year, forecast, label="forecast")
 plt.xlabel("year")
 plt.ylabel("Usa")
 plt.legend()
+plt.savefig("USA_forecast_plot.png")
 plt.show()
 
 param, covar = opt.curve_fit(logistic, df_ind["year"], df_ind["india"],p0=(3e12, 0.03, 2000.0))
@@ -269,6 +280,7 @@ print("parameters:", param)
 print("std. dev.", sigma)
 df_ind["fit"] = logistic(df_ind["year"], *param)
 df_ind.plot("year", ["india", "fit"])
+plt.savefig("India_logistic_plot.png")
 plt.show()
 
 
@@ -283,28 +295,9 @@ plt.plot(year, forecast, label="forecast")
 plt.xlabel("year")
 plt.ylabel("India")
 plt.legend()
+plt.savefig("India_forecast_plot.png")
 plt.show()
 
-print(data1)
-
-print(data1['continent'].unique())
-
-
-def cont(x):
-  data_a=data1[data1['continent']==x]
-  fig=px.bar(y=data_a['Country Name'],x=data_a['average'],width=1000,height=1200)
-  fig.update_layout(title_text=x, title_x=0.5)
-  fig.show()
-  plt.savefig('BarChart.jpg')
-
-continents=['Asia','Europe','Africa','Americas','Oceania']
-for i in continents:
-  cont(i)
-  
-data_mostly=data1[data1['average']>50]
-print(data_mostly)
-
-px.bar(y=data_mostly['average'],x=data_mostly['Country Name'],height=800,width=1000)
 
 
   
